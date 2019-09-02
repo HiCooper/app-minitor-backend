@@ -13,7 +13,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +37,7 @@ import javax.validation.Valid;
  * fileName MultyTestController
  */
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/api/auth")
 @Api(value = "授权", tags = "授权")
 public class AuthController {
 

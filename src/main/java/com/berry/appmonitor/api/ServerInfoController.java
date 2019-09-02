@@ -9,7 +9,6 @@ import com.berry.appmonitor.module.mo.UpdateServerInfoMo;
 import com.berry.appmonitor.service.IServerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-09-02
  */
 @RestController
-@RequestMapping("/server")
+@RequestMapping("/api/server")
 @Api(tags = "服务器管理")
 public class ServerInfoController {
 
@@ -36,7 +35,7 @@ public class ServerInfoController {
     @GetMapping("page")
     public Result pageListServer(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                  @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
-                                 @RequestParam(value = "keyword", defaultValue = "1") String keyword
+                                 @RequestParam(value = "keyword", required = false) String keyword
     ) {
         IPage<ServerInfo> page = serverService.pageListServer(pageNum, pageSize, keyword);
         return ResultFactory.wrapper(page);
