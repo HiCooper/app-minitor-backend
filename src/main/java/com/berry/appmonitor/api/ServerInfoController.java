@@ -26,8 +26,11 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "服务器管理")
 public class ServerInfoController {
 
-    @Autowired
-    private IServerService serverService;
+    private final IServerService serverService;
+
+    public ServerInfoController(IServerService serverService) {
+        this.serverService = serverService;
+    }
 
     @ApiOperation(value = "分页查询", httpMethod = "GET")
     @GetMapping("page")

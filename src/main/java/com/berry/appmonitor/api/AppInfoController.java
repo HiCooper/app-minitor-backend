@@ -26,8 +26,11 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "应用管理")
 public class AppInfoController {
 
-    @Autowired
-    private IAppService appService;
+    private final IAppService appService;
+
+    public AppInfoController(IAppService appService) {
+        this.appService = appService;
+    }
 
     @ApiOperation(value = "分页查询", httpMethod = "GET")
     @GetMapping("page")

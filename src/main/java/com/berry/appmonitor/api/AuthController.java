@@ -47,8 +47,11 @@ public class AuthController {
     @Resource
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private IUserDaoService userDaoService;
+    private final IUserDaoService userDaoService;
+
+    public AuthController(IUserDaoService userDaoService) {
+        this.userDaoService = userDaoService;
+    }
 
 
     @PostMapping("/login")

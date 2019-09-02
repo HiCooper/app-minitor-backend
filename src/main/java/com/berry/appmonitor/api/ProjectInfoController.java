@@ -26,8 +26,11 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "项目管理")
 public class ProjectInfoController {
 
-    @Autowired
-    private IProjectService pageListProject;
+    private final IProjectService pageListProject;
+
+    public ProjectInfoController(IProjectService pageListProject) {
+        this.pageListProject = pageListProject;
+    }
 
     @ApiOperation(value = "分页查询", httpMethod = "GET")
     @GetMapping("page")
