@@ -30,8 +30,8 @@ public class CodeGenerator {
     private static final String db = "47.101.42.169:3306/db_app_monitor";
     private static final String dbUsername = "berry";
     private static final String dbPassword = "okmnji123";
-    private static final String tableName = "app_info";
-    private static final String moduleName = "appInfo";
+    private static final String tableName = "server_info";
+    private static final String moduleName = "serverInfo";
     private static final String author = "HiCooper";
 
     /**

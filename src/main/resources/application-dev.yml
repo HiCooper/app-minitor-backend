@@ -59,6 +59,7 @@ logging:
     com.berry.appmonitor: DEBUG
 
 global:
+  work-space: ./work_space
   mail:
     from: berry_cooper@163.com
     base-url: http://127.0.0.1:8080
