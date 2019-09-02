@@ -1,6 +1,5 @@
 package com.berry.appmonitor;
 
-import com.berry.appmonitor.api.AuthController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,13 +13,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MockServletContext.class)
 @WebAppConfiguration
-public class SpringBootMicroServiceApplicationTests {
+public class AppMonitorServiceApplicationTests {
 
     private MockMvc mvc;
 
     @Before
     public void setUp() throws Exception {
-        mvc = MockMvcBuilders.standaloneSetup(new AuthController()).build();
+        mvc = MockMvcBuilders.standaloneSetup().build();
     }
 
     @Test
