@@ -25,8 +25,3 @@ spring:
       thread-name-prefix: scheduling-
       pool:
         size: 2
-
-logging:
-  level:
-    ROOT: INFO
-    com.berry.springbootmicroservice: DEBUG

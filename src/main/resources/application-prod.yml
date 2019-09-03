@@ -49,8 +49,12 @@ mybatis-plus:
 logging:
   config: classpath:logback/logback.xml
   level:
-    ROOT: INFO
+    root: INFO
     com.berry.appmonitor: DEBUG
+  path: ./log
+  file:
+    max-size: 100MB
+    max-history: 90
 
 log:
   # 运行日志存储跟路径
