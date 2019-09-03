@@ -52,17 +52,6 @@ mybatis-plus:
     cache-enabled: false
     call-setters-on-nulls: true
 
-#log
-logging:
-  config: classpath:logback/logback.xml
-  level:
-    root: INFO
-    com.berry.appmonitor: DEBUG
-  path: ./log
-  file:
-    max-size: 100MB
-    max-history: 90
-
 global:
   work-space: ./work_space
   mail:
