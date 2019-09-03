@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-09-02
  */
 @RestController
-@RequestMapping("/api/server")
+@RequestMapping("/ajax/server")
 @Api(tags = "服务器管理")
 public class ServerInfoController {
 

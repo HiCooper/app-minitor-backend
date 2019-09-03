@@ -1,7 +1,12 @@
 package com.berry.appmonitor.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.berry.appmonitor.dao.entity.AppInfo;
+import com.berry.appmonitor.module.vo.AppInfoListVo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +18,7 @@ import com.berry.appmonitor.dao.entity.AppInfo;
  */
 public interface AppInfoMapper extends BaseMapper<AppInfo> {
 
+    List<AppInfoListVo> pageList(IPage<AppInfoListVo> page,
+                                 @Param("ownerId") Long ownerId,
+                                 @Param("keyword") String keyword);
 }

@@ -5,15 +5,17 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.berry.appmonitor.common.ResultCode;
 import com.berry.appmonitor.common.exceptions.BaseException;
-import com.berry.appmonitor.common.utils.StringUtils;
 import com.berry.appmonitor.dao.entity.AppInfo;
 import com.berry.appmonitor.dao.service.IAppInfoDaoService;
 import com.berry.appmonitor.module.mo.UpdateAppInfoMo;
+import com.berry.appmonitor.module.vo.AppInfoListVo;
 import com.berry.appmonitor.security.SecurityUtils;
 import com.berry.appmonitor.security.dto.UserInfoDTO;
 import com.berry.appmonitor.service.IAppService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,18 +35,11 @@ public class AppServiceImpl implements IAppService {
     }
 
     @Override
-    public IPage<AppInfo> pageListApp(Integer pageNum, Integer pageSize, String keyword) {
+    public IPage<AppInfoListVo> pageListApp(Integer pageNum, Integer pageSize, String keyword) {
         UserInfoDTO currentUser = SecurityUtils.getCurrentUser();
-        IPage<AppInfo> page = new Page<>(pageNum, pageSize);
-        QueryWrapper<AppInfo> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("owner_id", currentUser.getId());
-        if (StringUtils.isNotBlank(keyword)) {
-            queryWrapper
-                    .like("name", keyword)
-                    .or()
-                    .like("git_url", keyword);
-        }
-        appInfoDaoService.page(page, queryWrapper);
+        IPage<AppInfoListVo> page = new Page<>(pageNum, pageSize);
+        List<AppInfoListVo> appInfoListVos = appInfoDaoService.pageList(page, currentUser.getId(), keyword);
+        page.setRecords(appInfoListVos);
         return page;
     }
 

@@ -3,7 +3,7 @@ package com.berry.appmonitor.security.dao.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.berry.appmonitor.security.dao.entity.Role;
-import com.berry.appmonitor.security.dao.entity.User;
+import com.berry.appmonitor.security.dao.entity.UserInfo;
 import com.berry.appmonitor.security.dao.mapper.UserMapper;
 import com.berry.appmonitor.security.dao.service.IUserDaoService;
 import org.springframework.stereotype.Service;
@@ -21,14 +21,14 @@ import java.util.Set;
  * @since 2018-12-02
  */
 @Service
-public class UserDaoServiceImpl extends ServiceImpl<UserMapper, User> implements IUserDaoService {
+public class UserDaoServiceImpl extends ServiceImpl<UserMapper, UserInfo> implements IUserDaoService {
 
     @Resource
     private UserMapper userMapper;
 
     @Override
-    public Optional<User> findOneByUsername(String lowercaseLogin) {
-        return Optional.ofNullable(userMapper.selectOne(new QueryWrapper<User>().eq("username", lowercaseLogin)));
+    public Optional<UserInfo> findOneByUsername(String lowercaseLogin) {
+        return Optional.ofNullable(userMapper.selectOne(new QueryWrapper<UserInfo>().eq("username", lowercaseLogin)));
     }
 
     @Override

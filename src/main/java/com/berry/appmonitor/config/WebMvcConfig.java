@@ -68,8 +68,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new AccessInterceptor(commitOnceFilter))
-                .addPathPatterns("/api/**")
-                .excludePathPatterns("/index.html", "/", "/auth/login", "/swagger-ui.html");
+                .addPathPatterns("/ajax/**")
+                .excludePathPatterns("/index.html", "/", "/ajax/auth/login", "/swagger-ui.html");
     }
 
     /**

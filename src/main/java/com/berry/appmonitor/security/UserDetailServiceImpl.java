@@ -1,7 +1,7 @@
 package com.berry.appmonitor.security;
 
 import com.berry.appmonitor.security.dao.entity.Role;
-import com.berry.appmonitor.security.dao.entity.User;
+import com.berry.appmonitor.security.dao.entity.UserInfo;
 import com.berry.appmonitor.security.dao.service.IUserDaoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,9 +47,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(final String username) {
         log.debug("Authenticating {}", username);
         String lowercaseLogin = username.toLowerCase(Locale.CHINA);
-        Optional<User> oneByUsername = userDaoService.findOneByUsername(lowercaseLogin);
+        Optional<UserInfo> oneByUsername = userDaoService.findOneByUsername(lowercaseLogin);
         return oneByUsername.map(user -> createSpringSecurityUser(lowercaseLogin, user))
-                .orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the database"));
+                .orElseThrow(() -> new UsernameNotFoundException("UserInfo " + lowercaseLogin + " was not found in the database"));
 
     }
 
@@ -60,9 +60,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
      * @param user     用户基本信息
      * @return 安全用户
      */
-    private org.springframework.security.core.userdetails.User createSpringSecurityUser(String username, User user) {
+    private org.springframework.security.core.userdetails.User createSpringSecurityUser(String username, UserInfo user) {
         if (!user.isActivated()) {
-            throw new UserNotActivatedException("User " + username + " was not activated");
+            throw new UserNotActivatedException("UserInfo " + username + " was not activated");
         }
         Set<Role> roleList = userDaoService.findRoleListByUserId(user.getId());
         List<GrantedAuthority> grantedAuthorities = roleList.stream()

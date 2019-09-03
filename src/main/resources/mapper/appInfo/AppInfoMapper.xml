@@ -20,4 +20,27 @@
         id, name, project_id, git_url, description, build_sh, run_path, create_time, update_time
     </sql>
 
+    <select id="pageList" resultType="com.berry.appmonitor.module.vo.AppInfoListVo">
+        SELECT
+            a.*,
+            b.`name` AS projectName,
+            c.username
+        FROM
+            app_info a
+            LEFT JOIN project_info b ON a.project_id = b.id
+            LEFT JOIN user_info c ON a.owner_id = c.id
+        <where>
+            <if test="ownerId != null">
+                and a.owner_id = #{ownerId}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                and
+                (a.name like concat("%",#{keyword},"%")
+                or b.name like concat("%",#{keyword},"%")
+                or c.name like concat("%",#{keyword},"%")
+                or a.git_url like concat("%",#{keyword},"%"))
+            </if>
+        </where>
+    </select>
+
 </mapper>

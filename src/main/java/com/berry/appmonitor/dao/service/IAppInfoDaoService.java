@@ -1,7 +1,11 @@
 package com.berry.appmonitor.dao.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.berry.appmonitor.dao.entity.AppInfo;
+import com.berry.appmonitor.module.vo.AppInfoListVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.berry.appmonitor.dao.entity.AppInfo;
  */
 public interface IAppInfoDaoService extends IService<AppInfo> {
 
+    List<AppInfoListVo> pageList(IPage<AppInfoListVo> page, Long id, String keyword);
 }

@@ -2,7 +2,7 @@ package com.berry.appmonitor.security.dao.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.berry.appmonitor.security.dao.entity.Role;
-import com.berry.appmonitor.security.dao.entity.User;
+import com.berry.appmonitor.security.dao.entity.UserInfo;
 
 import java.util.Optional;
 import java.util.Set;
@@ -15,7 +15,7 @@ import java.util.Set;
  * @author HiCooper
  * @since 2018-12-02
  */
-public interface IUserDaoService extends IService<User> {
+public interface IUserDaoService extends IService<UserInfo> {
 
     /**
      * 根据用户名获取用户
@@ -23,7 +23,7 @@ public interface IUserDaoService extends IService<User> {
      * @param lowercaseLogin
      * @return
      */
-    Optional<User> findOneByUsername(String lowercaseLogin);
+    Optional<UserInfo> findOneByUsername(String lowercaseLogin);
 
     /**
      * 根据用户id获取角色列表

@@ -3,6 +3,7 @@ package com.berry.appmonitor.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.berry.appmonitor.dao.entity.AppInfo;
 import com.berry.appmonitor.module.mo.UpdateAppInfoMo;
+import com.berry.appmonitor.module.vo.AppInfoListVo;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,7 +22,7 @@ public interface IAppService {
      * @param keyword  搜索关键字
      * @return
      */
-    IPage<AppInfo> pageListApp(Integer pageNum, Integer pageSize, String keyword);
+    IPage<AppInfoListVo> pageListApp(Integer pageNum, Integer pageSize, String keyword);
 
     /**
      * 查询 app 详情

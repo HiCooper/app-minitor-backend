@@ -1,9 +1,10 @@
 package com.berry.appmonitor.api;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.berry.appmonitor.common.Result;
 import com.berry.appmonitor.common.ResultCode;
+import com.berry.appmonitor.common.ResultFactory;
 import com.berry.appmonitor.common.exceptions.BaseException;
-import com.berry.appmonitor.security.dao.entity.User;
 import com.berry.appmonitor.security.dao.service.IUserDaoService;
 import com.berry.appmonitor.security.filter.AuthFilter;
 import com.berry.appmonitor.security.filter.TokenProvider;
@@ -13,9 +14,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -37,7 +35,7 @@ import javax.validation.Valid;
  * fileName MultyTestController
  */
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/ajax/auth")
 @Api(value = "授权", tags = "授权")
 public class AuthController {
 
@@ -55,9 +53,9 @@ public class AuthController {
 
     @PostMapping("/login")
     @ApiOperation("登录")
-    public ResponseEntity<LoginSuccessVo> authorize(@Valid @RequestBody LoginMo loginMo, HttpServletResponse response) {
+    public Result<LoginSuccessVo> authorize(@Valid @RequestBody LoginMo loginMo, HttpServletResponse response) {
         // 用户是否存在
-        User user = userDaoService.getOne(new QueryWrapper<User>().eq("username", loginMo.getUsername()));
+        com.berry.appmonitor.security.dao.entity.UserInfo user = userDaoService.getOne(new QueryWrapper<com.berry.appmonitor.security.dao.entity.UserInfo>().eq("username", loginMo.getUsername()));
         if (user == null) {
             throw new BaseException(ResultCode.ACCOUNT_NOT_EXIST);
         }
@@ -69,8 +67,6 @@ public class AuthController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             boolean rememberMe = (loginMo.getRememberMe() == null) ? false : loginMo.getRememberMe();
             String jwt = TokenProvider.createAndSignToken(authentication, user.getId(), rememberMe);
-            HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.add(AuthFilter.AUTHORIZATION_HEADER, jwt);
             long expires = TokenProvider.TOKEN_VALIDITY_IN_MILLISECONDS / 1000;
             if (rememberMe) {
                 expires = TokenProvider.TOKEN_VALIDITY_IN_MILLISECONDS_FOR_REMEMBER_ME / 1000;
@@ -79,8 +75,9 @@ public class AuthController {
             cookie.setMaxAge(Integer.valueOf(String.valueOf(expires)));
             cookie.setHttpOnly(true);
             response.addCookie(cookie);
-            httpHeaders.add("expires", String.valueOf(expires));
-            return new ResponseEntity<>(new LoginSuccessVo(jwt, expires, new UserInfo(user.getId(), user.getUsername())), httpHeaders, HttpStatus.OK);
+            response.addHeader(AuthFilter.AUTHORIZATION_HEADER, jwt);
+            response.addHeader("expires", String.valueOf(expires));
+            return ResultFactory.wrapper(new LoginSuccessVo(jwt, expires, new UserInfo(user.getId(), user.getUsername())));
         } catch (AuthenticationException e) {
             if (e instanceof DisabledException) {
                 throw new BaseException(ResultCode.ACCOUNT_DISABLE);
@@ -110,9 +107,9 @@ public class AuthController {
 
         private long expires;
 
-        private UserInfo userInfo;
+        private AuthController.UserInfo userInfo;
 
-        LoginSuccessVo(String token, long expires, UserInfo userInfo) {
+        LoginSuccessVo(String token, long expires, AuthController.UserInfo userInfo) {
             this.token = token;
             this.expires = expires;
             this.userInfo = userInfo;

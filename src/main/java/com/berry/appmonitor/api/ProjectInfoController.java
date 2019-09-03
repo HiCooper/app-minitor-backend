@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-09-02
  */
 @RestController
-@RequestMapping("/api/project")
+@RequestMapping("/ajax/project")
 @Api(tags = "项目管理")
 public class ProjectInfoController {
 

@@ -6,6 +6,7 @@ import com.berry.appmonitor.common.Result;
 import com.berry.appmonitor.common.ResultFactory;
 import com.berry.appmonitor.dao.entity.AppInfo;
 import com.berry.appmonitor.module.mo.UpdateAppInfoMo;
+import com.berry.appmonitor.module.vo.AppInfoListVo;
 import com.berry.appmonitor.service.IAppService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-09-01
  */
 @RestController
-@RequestMapping("/api/app")
+@RequestMapping("/ajax/app")
 @Api(tags = "应用管理")
 public class AppInfoController {
 
@@ -37,7 +38,7 @@ public class AppInfoController {
                               @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
                               @RequestParam(value = "keyword", required = false) String keyword
     ) {
-        IPage<AppInfo> page = appService.pageListApp(pageNum, pageSize, keyword);
+        IPage<AppInfoListVo> page = appService.pageListApp(pageNum, pageSize, keyword);
         return ResultFactory.wrapper(page);
 
     }

@@ -25,3 +25,8 @@ spring:
       thread-name-prefix: scheduling-
       pool:
         size: 2
+
+logging:
+  level:
+    root: INFO
+    com.berry.appmonitor: DEBUG

@@ -3,7 +3,7 @@
 <mapper namespace="com.berry.appmonitor.security.dao.mapper.UserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.berry.appmonitor.security.dao.entity.User">
+    <resultMap id="BaseResultMap" type="com.berry.appmonitor.security.dao.entity.UserInfo">
         <id column="id" property="id"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>

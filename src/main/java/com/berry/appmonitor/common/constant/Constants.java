@@ -29,7 +29,7 @@ public final class Constants {
     static {
         WRITE_LIST.add("/swagger.+");
         WRITE_LIST.add("/csrf");
-        WRITE_LIST.add("/v2/api-docs");
+        WRITE_LIST.add("/v2/ajax-docs");
         WRITE_LIST.add("/webjars/.+");
         WRITE_LIST.add(HEALTH_CHECK_URL);
         WRITE_LIST.add(ERROR_STATE_URL);
