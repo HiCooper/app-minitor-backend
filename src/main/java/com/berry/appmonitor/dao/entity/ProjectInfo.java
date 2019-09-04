@@ -2,6 +2,7 @@ package com.berry.appmonitor.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -20,6 +21,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@TableName("project_info")
 public class ProjectInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,8 +29,8 @@ public class ProjectInfo implements Serializable {
     /**
      * 主键id
      */
-    @TableId(value = "id", type = IdType.ID_WORKER)
-    private Long id;
+    @TableId(value = "id", type = IdType.ID_WORKER_STR)
+    private String id;
 
     /**
      * 项目名称
@@ -36,12 +38,17 @@ public class ProjectInfo implements Serializable {
     private String name;
 
     /**
+     * 项目主页
+     */
+    private String homeUrl;
+
+    /**
      * 项目描述
      */
     private String description;
 
     /**
-     * 项目id
+     * 创建者
      */
     private String ownerId;
 

@@ -8,6 +8,7 @@ import com.berry.appmonitor.common.exceptions.BaseException;
 import com.berry.appmonitor.common.utils.StringUtils;
 import com.berry.appmonitor.dao.entity.ProjectInfo;
 import com.berry.appmonitor.dao.service.IProjectInfoDaoService;
+import com.berry.appmonitor.module.mo.CreateProjectMo;
 import com.berry.appmonitor.module.mo.UpdateProjectInfoMo;
 import com.berry.appmonitor.security.SecurityUtils;
 import com.berry.appmonitor.security.dto.UserInfoDTO;
@@ -43,6 +44,20 @@ public class ProjectServiceImpl implements IProjectService {
         }
         projectInfoDaoService.page(page, queryWrapper);
         return page;
+    }
+
+    @Override
+    public boolean createProject(CreateProjectMo createProjectMo) {
+        // 1.项目名不能重复
+        ProjectInfo projectInfo = projectInfoDaoService.getOne(new QueryWrapper<ProjectInfo>().eq("name", createProjectMo.getName()));
+        if (projectInfo != null) {
+            throw new BaseException("403", "项目名已经存在");
+        }
+        projectInfo = new ProjectInfo();
+        BeanUtils.copyProperties(createProjectMo, projectInfo);
+        UserInfoDTO currentUser = SecurityUtils.getCurrentUser();
+        projectInfo.setOwnerId(currentUser.getId());
+        return projectInfoDaoService.save(projectInfo);
     }
 
     @Override

@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class UserInfoDTO {
 
-    private Long id;
+    private String id;
 
     private String username;
 
@@ -23,7 +23,7 @@ public class UserInfoDTO {
 
     }
 
-    public UserInfoDTO(Long id, String username) {
+    public UserInfoDTO(String id, String username) {
         this.id = id;
         this.username = username;
     }

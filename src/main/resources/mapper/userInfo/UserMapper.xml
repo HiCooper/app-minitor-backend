@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.berry.appmonitor.security.dao.mapper.UserMapper">
+<mapper namespace="com.berry.appmonitor.security.dao.mapper.UserInfoMapper">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.berry.appmonitor.security.dao.entity.UserInfo">
@@ -24,10 +24,10 @@
     </sql>
 
 
-    <select id="getRolesByUserId" resultType="com.berry.appmonitor.security.dao.entity.Role"
+    <select id="getRolesByUserId" resultType="com.berry.appmonitor.security.dao.entity.RoleInfo"
             parameterType="java.lang.Integer">
 
-        select b.* from user_role a left join role b on a.role_id = b.id
+        select b.* from user_role a left join role_info b on a.role_id = b.id
         <where>
             <if test="userId != null">
                 and a.user_id = #{userId}

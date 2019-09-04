@@ -5,7 +5,7 @@ import com.berry.appmonitor.common.Result;
 import com.berry.appmonitor.common.ResultCode;
 import com.berry.appmonitor.common.ResultFactory;
 import com.berry.appmonitor.common.exceptions.BaseException;
-import com.berry.appmonitor.security.dao.service.IUserDaoService;
+import com.berry.appmonitor.security.dao.service.IUserInfoDaoService;
 import com.berry.appmonitor.security.filter.AuthFilter;
 import com.berry.appmonitor.security.filter.TokenProvider;
 import com.berry.appmonitor.security.vm.LoginMo;
@@ -44,9 +44,9 @@ public class AuthController {
     @Resource
     private AuthenticationManager authenticationManager;
 
-    private final IUserDaoService userDaoService;
+    private final IUserInfoDaoService userDaoService;
 
-    public AuthController(IUserDaoService userDaoService) {
+    public AuthController(IUserInfoDaoService userDaoService) {
         this.userDaoService = userDaoService;
     }
 
@@ -119,10 +119,10 @@ public class AuthController {
 
     @Data
     private static class UserInfo {
-        private Long id;
+        private String id;
         private String username;
 
-        UserInfo(Long id, String username) {
+        UserInfo(String id, String username) {
             this.id = id;
             this.username = username;
         }

@@ -1,7 +1,7 @@
 package com.berry.appmonitor.security.dao.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.berry.appmonitor.security.dao.entity.Role;
+import com.berry.appmonitor.security.dao.entity.RoleInfo;
 
 /**
  * <p>
@@ -11,5 +11,5 @@ import com.berry.appmonitor.security.dao.entity.Role;
  * @author HiCooper
  * @since 2018-12-02
  */
-public interface IRoleDaoService extends IService<Role> {
+public interface IRoleInfoDaoService extends IService<RoleInfo> {
 }

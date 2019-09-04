@@ -71,15 +71,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/ajax/**")
                 .excludePathPatterns("/index.html", "/", "/ajax/auth/login", "/swagger-ui.html");
     }
-
-    /**
-     * long 类型数据 序列化 精度丢失处理，一律转化为 string类型返回
-     *
-     * @return
-     */
-    @Bean("jackson2ObjectMapperBuilderCustomizer")
-    public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
-        return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.serializerByType(Long.class, ToStringSerializer.instance)
-                .serializerByType(Long.TYPE, ToStringSerializer.instance);
-    }
 }

@@ -17,5 +17,5 @@ import java.util.List;
  */
 public interface IAppInfoDaoService extends IService<AppInfo> {
 
-    List<AppInfoListVo> pageList(IPage<AppInfoListVo> page, Long id, String keyword);
+    List<AppInfoListVo> pageList(IPage<AppInfoListVo> page, String id, String keyword);
 }

@@ -19,6 +19,6 @@ import java.util.List;
 public interface AppInfoMapper extends BaseMapper<AppInfo> {
 
     List<AppInfoListVo> pageList(IPage<AppInfoListVo> page,
-                                 @Param("ownerId") Long ownerId,
+                                 @Param("ownerId") String ownerId,
                                  @Param("keyword") String keyword);
 }

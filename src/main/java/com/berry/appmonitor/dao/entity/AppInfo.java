@@ -2,6 +2,7 @@ package com.berry.appmonitor.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -20,6 +21,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@TableName("app_info")
 public class AppInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,8 +29,8 @@ public class AppInfo implements Serializable {
     /**
      * 主键id
      */
-    @TableId(type = IdType.ID_WORKER)
-    private Long id;
+    @TableId(type = IdType.ID_WORKER_STR)
+    private String id;
 
     /**
      * 应用名称
@@ -38,7 +40,7 @@ public class AppInfo implements Serializable {
     /**
      * 所属项目id
      */
-    private Long projectId;
+    private String projectId;
 
     /**
      * git仓库地址

@@ -1,8 +1,8 @@
 package com.berry.appmonitor.security;
 
-import com.berry.appmonitor.security.dao.entity.Role;
+import com.berry.appmonitor.security.dao.entity.RoleInfo;
 import com.berry.appmonitor.security.dao.entity.UserInfo;
-import com.berry.appmonitor.security.dao.service.IUserDaoService;
+import com.berry.appmonitor.security.dao.service.IUserInfoDaoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,7 +33,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
     private final Logger log = LoggerFactory.getLogger(UserDetailServiceImpl.class);
 
     @Resource
-    private IUserDaoService userDaoService;
+    private IUserInfoDaoService userDaoService;
 
     /**
      * 根据用户名获取用户并创建授权用户信息
@@ -64,7 +64,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (!user.isActivated()) {
             throw new UserNotActivatedException("UserInfo " + username + " was not activated");
         }
-        Set<Role> roleList = userDaoService.findRoleListByUserId(user.getId());
+        Set<RoleInfo> roleList = userDaoService.findRoleListByUserId(user.getId());
         List<GrantedAuthority> grantedAuthorities = roleList.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());

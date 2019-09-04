@@ -7,6 +7,7 @@ import com.berry.appmonitor.common.ResultCode;
 import com.berry.appmonitor.common.exceptions.BaseException;
 import com.berry.appmonitor.dao.entity.AppInfo;
 import com.berry.appmonitor.dao.service.IAppInfoDaoService;
+import com.berry.appmonitor.module.mo.CreateAppInfoMo;
 import com.berry.appmonitor.module.mo.UpdateAppInfoMo;
 import com.berry.appmonitor.module.vo.AppInfoListVo;
 import com.berry.appmonitor.security.SecurityUtils;
@@ -73,5 +74,21 @@ public class AppServiceImpl implements IAppService {
             throw new BaseException(ResultCode.DATA_NOT_EXIST);
         }
         return appInfoDaoService.removeById(id);
+    }
+
+    @Override
+    public boolean createApp(CreateAppInfoMo createAppInfoMo) {
+        UserInfoDTO currentUser = SecurityUtils.getCurrentUser();
+        // 同一创建者 app 名字不能重复
+        AppInfo appInfo = appInfoDaoService.getOne(new QueryWrapper<AppInfo>()
+                .eq("name", createAppInfoMo.getName())
+                .eq("owner_id", currentUser.getId()));
+        if (appInfo != null) {
+            throw new BaseException("403", "应用名已经存在");
+        }
+        appInfo = new AppInfo();
+        BeanUtils.copyProperties(createAppInfoMo, appInfo);
+        appInfo.setOwnerId(currentUser.getId());
+        return appInfoDaoService.save(appInfo);
     }
 }

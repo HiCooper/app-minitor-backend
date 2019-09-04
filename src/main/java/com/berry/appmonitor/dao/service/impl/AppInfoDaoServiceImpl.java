@@ -26,7 +26,7 @@ public class AppInfoDaoServiceImpl extends ServiceImpl<AppInfoMapper, AppInfo> i
     private AppInfoMapper mapper;
 
     @Override
-    public List<AppInfoListVo> pageList(IPage<AppInfoListVo> page, Long ownerId, String keyword) {
+    public List<AppInfoListVo> pageList(IPage<AppInfoListVo> page, String ownerId, String keyword) {
         return mapper.pageList(page, ownerId, keyword);
     }
 }

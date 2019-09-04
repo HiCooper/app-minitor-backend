@@ -1,7 +1,7 @@
 package com.berry.appmonitor.security.dao.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.berry.appmonitor.security.dao.entity.Role;
+import com.berry.appmonitor.security.dao.entity.RoleInfo;
 import com.berry.appmonitor.security.dao.entity.UserInfo;
 
 import java.util.Optional;
@@ -15,7 +15,7 @@ import java.util.Set;
  * @author HiCooper
  * @since 2018-12-02
  */
-public interface IUserDaoService extends IService<UserInfo> {
+public interface IUserInfoDaoService extends IService<UserInfo> {
 
     /**
      * 根据用户名获取用户
@@ -31,5 +31,5 @@ public interface IUserDaoService extends IService<UserInfo> {
      * @param userId
      * @return
      */
-    Set<Role> findRoleListByUserId(Long userId);
+    Set<RoleInfo> findRoleListByUserId(String userId);
 }

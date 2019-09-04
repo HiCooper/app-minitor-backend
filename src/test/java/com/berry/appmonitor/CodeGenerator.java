@@ -48,7 +48,7 @@ public class CodeGenerator {
         gc.setBaseResultMap(true);
         gc.setBaseColumnList(true);
         gc.setAuthor(author);
-        gc.setIdType(IdType.ID_WORKER);
+        gc.setIdType(IdType.ID_WORKER_STR);
         gc.setOpen(false);
         gc.setDateType(DateType.ONLY_DATE);
         gc.setServiceName("I%sDaoService");

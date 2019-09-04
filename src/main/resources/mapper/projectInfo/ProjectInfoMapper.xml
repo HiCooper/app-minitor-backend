@@ -6,6 +6,7 @@
     <resultMap id="BaseResultMap" type="com.berry.appmonitor.dao.entity.ProjectInfo">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
+        <result column="home_url" property="homeUrl"/>
         <result column="description" property="description"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
@@ -13,7 +14,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, description, create_time, update_time
+        id, name, homeUrl, description, create_time, update_time
     </sql>
 
 </mapper>

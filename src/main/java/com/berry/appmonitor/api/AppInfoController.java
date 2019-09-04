@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.berry.appmonitor.common.Result;
 import com.berry.appmonitor.common.ResultFactory;
 import com.berry.appmonitor.dao.entity.AppInfo;
+import com.berry.appmonitor.module.mo.CreateAppInfoMo;
 import com.berry.appmonitor.module.mo.UpdateAppInfoMo;
 import com.berry.appmonitor.module.vo.AppInfoListVo;
 import com.berry.appmonitor.service.IAppService;
@@ -36,11 +37,15 @@ public class AppInfoController {
     @GetMapping("page")
     public Result pageListApp(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                               @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
-                              @RequestParam(value = "keyword", required = false) String keyword
-    ) {
+                              @RequestParam(value = "keyword", required = false) String keyword) {
         IPage<AppInfoListVo> page = appService.pageListApp(pageNum, pageSize, keyword);
         return ResultFactory.wrapper(page);
+    }
 
+    @ApiOperation(value = "添加应用", httpMethod = "POST")
+    @PostMapping("create")
+    public Result createApp(@Validated @RequestBody CreateAppInfoMo createAppInfoMo) {
+        return ResultFactory.wrapper(appService.createApp(createAppInfoMo));
     }
 
     @ApiOperation(value = "详情查询", httpMethod = "GET")

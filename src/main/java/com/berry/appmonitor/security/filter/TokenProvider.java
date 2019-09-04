@@ -61,7 +61,7 @@ public class TokenProvider {
      * @param rememberMe     是否记住我
      * @return 加密token
      */
-    public static String createAndSignToken(Authentication authentication, Long userId, boolean rememberMe) {
+    public static String createAndSignToken(Authentication authentication, String userId, boolean rememberMe) {
 
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -132,7 +132,7 @@ public class TokenProvider {
 
         UserInfoDTO principal = new UserInfoDTO();
         principal.setUsername(claimMap.get("sub").asString());
-        principal.setId(claimMap.get(USER_ID_KEY).asLong());
+        principal.setId(claimMap.get(USER_ID_KEY).asString());
         return new UsernamePasswordAuthenticationToken(principal, jwt, authorities);
     }
 

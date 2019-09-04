@@ -2,6 +2,7 @@ package com.berry.appmonitor.module.mo;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -13,14 +14,12 @@ import javax.validation.constraints.NotNull;
  * Use：
  */
 @Data
-public class UpdateAppInfoMo {
-
-    @NotNull
-    private String id;
+public class CreateAppInfoMo {
 
     /**
      * 应用名称
      */
+    @NotBlank
     private String name;
 
     /**
@@ -31,20 +30,12 @@ public class UpdateAppInfoMo {
     /**
      * git仓库地址
      */
+    @NotBlank
     private String gitUrl;
 
     /**
      * 应用描述
      */
+    @NotBlank
     private String description;
-
-    /**
-     * 构建脚本
-     */
-    private String buildSh;
-
-    /**
-     * 自定义运行目录
-     */
-    private String runPath;
 }

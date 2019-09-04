@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 public class UpdateServerInfoMo {
 
     @NotNull
-    private Long id;
+    private String id;
 
     /**
      * 名称

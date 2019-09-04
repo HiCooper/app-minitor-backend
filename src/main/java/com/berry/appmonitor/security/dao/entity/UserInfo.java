@@ -26,8 +26,8 @@ public class UserInfo implements Serializable {
     /**
      * 主键
      */
-    @TableId(type = IdType.ID_WORKER)
-    private Long id;
+    @TableId(type = IdType.ID_WORKER_STR)
+    private String id;
 
     /**
      * 用户名

@@ -2,6 +2,7 @@ package com.berry.appmonitor.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.berry.appmonitor.dao.entity.ProjectInfo;
+import com.berry.appmonitor.module.mo.CreateProjectMo;
 import com.berry.appmonitor.module.mo.UpdateProjectInfoMo;
 
 /**
@@ -46,4 +47,11 @@ public interface IProjectService {
      * @return
      */
     boolean deleteProjectById(Long id);
+
+    /**
+     * 项目创建
+     * @param createProjectMo
+     * @return
+     */
+    boolean createProject(CreateProjectMo createProjectMo);
 }

@@ -2,10 +2,10 @@ package com.berry.appmonitor.security.dao.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.berry.appmonitor.security.dao.entity.Role;
+import com.berry.appmonitor.security.dao.entity.RoleInfo;
 import com.berry.appmonitor.security.dao.entity.UserInfo;
-import com.berry.appmonitor.security.dao.mapper.UserMapper;
-import com.berry.appmonitor.security.dao.service.IUserDaoService;
+import com.berry.appmonitor.security.dao.mapper.UserInfoMapper;
+import com.berry.appmonitor.security.dao.service.IUserInfoDaoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,10 +21,10 @@ import java.util.Set;
  * @since 2018-12-02
  */
 @Service
-public class UserDaoServiceImpl extends ServiceImpl<UserMapper, UserInfo> implements IUserDaoService {
+public class UserInfoDaoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements IUserInfoDaoService {
 
     @Resource
-    private UserMapper userMapper;
+    private UserInfoMapper userMapper;
 
     @Override
     public Optional<UserInfo> findOneByUsername(String lowercaseLogin) {
@@ -32,7 +32,7 @@ public class UserDaoServiceImpl extends ServiceImpl<UserMapper, UserInfo> implem
     }
 
     @Override
-    public Set<Role> findRoleListByUserId(Long userId) {
+    public Set<RoleInfo> findRoleListByUserId(String userId) {
         return userMapper.getRolesByUserId(userId);
     }
 }
