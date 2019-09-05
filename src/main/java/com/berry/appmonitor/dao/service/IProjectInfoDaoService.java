@@ -2,6 +2,9 @@ package com.berry.appmonitor.dao.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.berry.appmonitor.dao.entity.ProjectInfo;
+import com.berry.appmonitor.module.vo.ProjectOptionVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.berry.appmonitor.dao.entity.ProjectInfo;
  */
 public interface IProjectInfoDaoService extends IService<ProjectInfo> {
 
+    List<ProjectOptionVo> listAllProject(String id);
 }

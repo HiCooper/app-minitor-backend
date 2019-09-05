@@ -10,11 +10,14 @@ import com.berry.appmonitor.dao.entity.ProjectInfo;
 import com.berry.appmonitor.dao.service.IProjectInfoDaoService;
 import com.berry.appmonitor.module.mo.CreateProjectMo;
 import com.berry.appmonitor.module.mo.UpdateProjectInfoMo;
+import com.berry.appmonitor.module.vo.ProjectOptionVo;
 import com.berry.appmonitor.security.SecurityUtils;
 import com.berry.appmonitor.security.dto.UserInfoDTO;
 import com.berry.appmonitor.service.IProjectService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -90,5 +93,11 @@ public class ProjectServiceImpl implements IProjectService {
             throw new BaseException(ResultCode.DATA_NOT_EXIST);
         }
         return projectInfoDaoService.removeById(id);
+    }
+
+    @Override
+    public List<ProjectOptionVo> listAllProject() {
+        UserInfoDTO currentUser = SecurityUtils.getCurrentUser();
+        return projectInfoDaoService.listAllProject(currentUser.getId());
     }
 }

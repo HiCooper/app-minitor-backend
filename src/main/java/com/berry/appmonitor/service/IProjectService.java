@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.berry.appmonitor.dao.entity.ProjectInfo;
 import com.berry.appmonitor.module.mo.CreateProjectMo;
 import com.berry.appmonitor.module.mo.UpdateProjectInfoMo;
+import com.berry.appmonitor.module.vo.ProjectOptionVo;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -54,4 +57,10 @@ public interface IProjectService {
      * @return
      */
     boolean createProject(CreateProjectMo createProjectMo);
+
+    /**
+     * 获取所有项目，仅返回id和名称
+     * @return
+     */
+    List<ProjectOptionVo> listAllProject();
 }

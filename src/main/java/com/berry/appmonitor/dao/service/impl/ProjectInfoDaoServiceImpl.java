@@ -4,7 +4,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.berry.appmonitor.dao.entity.ProjectInfo;
 import com.berry.appmonitor.dao.mapper.ProjectInfoMapper;
 import com.berry.appmonitor.dao.service.IProjectInfoDaoService;
+import com.berry.appmonitor.module.vo.ProjectOptionVo;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +21,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProjectInfoDaoServiceImpl extends ServiceImpl<ProjectInfoMapper, ProjectInfo> implements IProjectInfoDaoService {
 
+
+    @Resource
+    private ProjectInfoMapper mapper;
+
+    @Override
+    public List<ProjectOptionVo> listAllProject(String userId) {
+        return mapper.listAllProject(userId);
+    }
 }

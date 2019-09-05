@@ -15,7 +15,7 @@ import java.util.Date;
 @Data
 public class AppInfoListVo {
 
-    private Long id;
+    private String id;
 
     /**
      * 应用名称

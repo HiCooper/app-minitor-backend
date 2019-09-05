@@ -35,7 +35,7 @@ public class ProjectInfoController {
 
     @ApiOperation(value = "分页查询", httpMethod = "GET")
     @GetMapping("page")
-    public Result projectService(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+    public Result pageList(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                   @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
                                   @RequestParam(value = "keyword", required = false) String keyword) {
         IPage<ProjectInfo> page = projectService.pageListProject(pageNum, pageSize, keyword);
@@ -47,6 +47,11 @@ public class ProjectInfoController {
     @PostMapping("create")
     public Result createProject(@Validated @RequestBody CreateProjectMo createProjectMo) {
         return ResultFactory.wrapper(projectService.createProject(createProjectMo));
+    }
+
+    @GetMapping("list_base")
+    public Result listAllProject(){
+        return ResultFactory.wrapper(projectService.listAllProject());
     }
 
     @ApiOperation(value = "详情查询", httpMethod = "GET")
