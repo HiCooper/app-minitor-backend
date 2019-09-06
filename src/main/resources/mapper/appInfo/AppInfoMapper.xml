@@ -22,13 +22,13 @@
 
     <select id="pageList" resultType="com.berry.appmonitor.module.vo.AppInfoListVo">
         SELECT
-            a.*,
-            b.`name` AS projectName,
-            c.username
+        a.*,
+        b.`name` AS projectName,
+        c.username
         FROM
-            app_info a
-            LEFT JOIN project_info b ON a.project_id = b.id
-            LEFT JOIN user_info c ON a.owner_id = c.id
+        app_info a
+        LEFT JOIN project_info b ON a.project_id = b.id
+        LEFT JOIN user_info c ON a.owner_id = c.id
         <where>
             <if test="ownerId != null">
                 and a.owner_id = #{ownerId}
@@ -41,6 +41,50 @@
                 or a.git_url like concat("%",#{keyword},"%"))
             </if>
         </where>
+    </select>
+
+    <resultMap id="detailAppMap" type="com.berry.appmonitor.module.vo.AppInoDetailVo">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="git_url" property="gitUrl"/>
+        <result column="description" property="description"/>
+        <result column="build_sh" property="buildSh"/>
+        <result column="run_path" property="runPath"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="projectName" property="projectName"/>
+        <result column="username" property="username"/>
+        <collection property="buildHistoryList" column="id" select="getBuildHistoryByAppId">
+            <id column="id" property="id"/>
+            <result property="appId" column="app_id"/>
+            <result property="resultState" column="result_state"/>
+            <result property="startTime" column="start_time"/>
+            <result property="endTime" column="end_time"/>
+            <result property="operator" column="operator"/>
+            <result property="serverAddress" column="server_address"/>
+        </collection>
+    </resultMap>
+
+    <select id="getBuildHistoryByAppId" resultType="com.berry.appmonitor.dao.entity.BuildHistory">
+        select
+        id, app_id, result_state, start_time, end_time, operator, server_address
+        from build_history
+        where app_id = #{id}
+    </select>
+
+    <select id="detailAppById" resultMap="detailAppMap">
+        SELECT
+        a.id, a.name,
+        a.git_url, a.description,
+        a.build_sh, a.run_path,
+        a.create_time, a.update_time,
+        b.`name` AS projectName,
+        c.username
+        FROM
+        app_info a
+        LEFT JOIN project_info b ON a.project_id = b.id
+        LEFT JOIN user_info c ON a.owner_id = c.id
+        where a.owner_id = #{ownerId} and a.id = #{id}
     </select>
 
 </mapper>

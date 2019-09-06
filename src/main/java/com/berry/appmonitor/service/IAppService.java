@@ -5,6 +5,7 @@ import com.berry.appmonitor.dao.entity.AppInfo;
 import com.berry.appmonitor.module.mo.CreateAppInfoMo;
 import com.berry.appmonitor.module.mo.UpdateAppInfoMo;
 import com.berry.appmonitor.module.vo.AppInfoListVo;
+import com.berry.appmonitor.module.vo.AppInoDetailVo;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,7 +32,7 @@ public interface IAppService {
      * @param id app 主键id
      * @return
      */
-    AppInfo detailAppById(Long id);
+    AppInoDetailVo detailAppById(Long id);
 
     /**
      * 更新 app 信息

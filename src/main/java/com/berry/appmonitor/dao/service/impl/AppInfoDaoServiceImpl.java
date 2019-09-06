@@ -6,6 +6,7 @@ import com.berry.appmonitor.dao.entity.AppInfo;
 import com.berry.appmonitor.dao.mapper.AppInfoMapper;
 import com.berry.appmonitor.dao.service.IAppInfoDaoService;
 import com.berry.appmonitor.module.vo.AppInfoListVo;
+import com.berry.appmonitor.module.vo.AppInoDetailVo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,5 +29,10 @@ public class AppInfoDaoServiceImpl extends ServiceImpl<AppInfoMapper, AppInfo> i
     @Override
     public List<AppInfoListVo> pageList(IPage<AppInfoListVo> page, String ownerId, String keyword) {
         return mapper.pageList(page, ownerId, keyword);
+    }
+
+    @Override
+    public AppInoDetailVo detailAppById(Long id, String currentUserId) {
+        return mapper.detailAppById(id, currentUserId);
     }
 }

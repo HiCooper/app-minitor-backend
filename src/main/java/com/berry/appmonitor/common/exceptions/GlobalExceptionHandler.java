@@ -46,7 +46,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * 返回 xml 格式异常
      */
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     @ExceptionHandler(value = XmlResponseException.class)
     public XmlResponse xmlResponseException(HttpServletRequest req, HttpServletResponse response, XmlResponseException ex) {
         logger.error("请求接口 [{}] 发生错误，错误信息：{}", req.getRequestURI(), ex.getXmlErrorInfo());

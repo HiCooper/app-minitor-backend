@@ -10,6 +10,7 @@ import com.berry.appmonitor.dao.service.IAppInfoDaoService;
 import com.berry.appmonitor.module.mo.CreateAppInfoMo;
 import com.berry.appmonitor.module.mo.UpdateAppInfoMo;
 import com.berry.appmonitor.module.vo.AppInfoListVo;
+import com.berry.appmonitor.module.vo.AppInoDetailVo;
 import com.berry.appmonitor.security.SecurityUtils;
 import com.berry.appmonitor.security.dto.UserInfoDTO;
 import com.berry.appmonitor.service.IAppService;
@@ -45,8 +46,9 @@ public class AppServiceImpl implements IAppService {
     }
 
     @Override
-    public AppInfo detailAppById(Long id) {
-        return appInfoDaoService.getById(id);
+    public AppInoDetailVo detailAppById(Long id) {
+        UserInfoDTO currentUser = SecurityUtils.getCurrentUser();
+        return appInfoDaoService.detailAppById(id, currentUser.getId());
     }
 
     @Override

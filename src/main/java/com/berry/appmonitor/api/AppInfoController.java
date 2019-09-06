@@ -8,6 +8,7 @@ import com.berry.appmonitor.dao.entity.AppInfo;
 import com.berry.appmonitor.module.mo.CreateAppInfoMo;
 import com.berry.appmonitor.module.mo.UpdateAppInfoMo;
 import com.berry.appmonitor.module.vo.AppInfoListVo;
+import com.berry.appmonitor.module.vo.AppInoDetailVo;
 import com.berry.appmonitor.service.IAppService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -48,11 +49,18 @@ public class AppInfoController {
         return ResultFactory.wrapper(appService.createApp(createAppInfoMo));
     }
 
+    /**
+     * 根据id查询详细相关信息
+     * 1。基本信息
+     * 2。构建历史记录
+     * @param id app 主键id
+     * @return
+     */
     @ApiOperation(value = "详情查询", httpMethod = "GET")
     @GetMapping("detail")
     public Result detailApp(@RequestParam(value = "id") Long id) {
-        AppInfo appInfo = appService.detailAppById(id);
-        return ResultFactory.wrapper(appInfo);
+        AppInoDetailVo appInoDetailVo = appService.detailAppById(id);
+        return ResultFactory.wrapper(appInoDetailVo);
     }
 
     @ApiOperation(value = "编辑修改", httpMethod = "POST")
