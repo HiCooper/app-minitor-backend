@@ -55,7 +55,3 @@ logging:
   file:
     max-size: 100MB
     max-history: 90
-
-log:
-  # 运行日志存储跟路径
-  path: ./logs
