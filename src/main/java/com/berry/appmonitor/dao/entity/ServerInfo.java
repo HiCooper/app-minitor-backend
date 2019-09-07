@@ -43,6 +43,11 @@ public class ServerInfo implements Serializable {
     private String ip;
 
     /**
+     * 描述
+     */
+    private String description;
+
+    /**
      * 公钥登陆状态
      */
     private Boolean publicKeyLogin;

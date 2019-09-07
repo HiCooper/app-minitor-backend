@@ -2,6 +2,7 @@ package com.berry.appmonitor.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.berry.appmonitor.dao.entity.ServerInfo;
+import com.berry.appmonitor.module.mo.CreateServerMo;
 import com.berry.appmonitor.module.mo.UpdateServerInfoMo;
 
 /**
@@ -47,4 +48,12 @@ public interface IServerService {
      * @return
      */
     boolean deleteServerById(Long id);
+
+    /**
+     * 添加服务器
+     *
+     * @param createServerMo
+     * @return
+     */
+    boolean createServer(CreateServerMo createServerMo);
 }

@@ -4,7 +4,6 @@ package com.berry.appmonitor.api;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.berry.appmonitor.common.Result;
 import com.berry.appmonitor.common.ResultFactory;
-import com.berry.appmonitor.dao.entity.AppInfo;
 import com.berry.appmonitor.module.mo.CreateAppInfoMo;
 import com.berry.appmonitor.module.mo.UpdateAppInfoMo;
 import com.berry.appmonitor.module.vo.AppInfoListVo;
@@ -53,6 +52,7 @@ public class AppInfoController {
      * 根据id查询详细相关信息
      * 1。基本信息
      * 2。构建历史记录
+     *
      * @param id app 主键id
      * @return
      */

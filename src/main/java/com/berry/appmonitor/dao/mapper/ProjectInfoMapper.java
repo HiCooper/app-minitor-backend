@@ -5,7 +5,6 @@ import com.berry.appmonitor.dao.entity.ProjectInfo;
 import com.berry.appmonitor.module.vo.ProjectOptionVo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

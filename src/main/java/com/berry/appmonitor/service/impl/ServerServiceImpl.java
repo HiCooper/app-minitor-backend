@@ -8,6 +8,7 @@ import com.berry.appmonitor.common.exceptions.BaseException;
 import com.berry.appmonitor.common.utils.StringUtils;
 import com.berry.appmonitor.dao.entity.ServerInfo;
 import com.berry.appmonitor.dao.service.IServerInfoDaoService;
+import com.berry.appmonitor.module.mo.CreateServerMo;
 import com.berry.appmonitor.module.mo.UpdateServerInfoMo;
 import com.berry.appmonitor.service.IServerService;
 import org.springframework.beans.BeanUtils;
@@ -43,6 +44,20 @@ public class ServerServiceImpl implements IServerService {
         }
         serverInfoDaoService.page(page, queryWrapper);
         return page;
+    }
+
+    @Override
+    public boolean createServer(CreateServerMo createServerMo) {
+        int count = serverInfoDaoService.count(new QueryWrapper<ServerInfo>()
+                .eq("name", createServerMo.getName())
+                .or()
+                .eq("ip", createServerMo.getIp()));
+        if (count > 0) {
+            throw new BaseException("403", "服务器名称或ip已存在");
+        }
+        ServerInfo serverInfo = new ServerInfo();
+        BeanUtils.copyProperties(createServerMo, serverInfo);
+        return serverInfoDaoService.save(serverInfo);
     }
 
     @Override

@@ -63,6 +63,11 @@
             <result property="operator" column="operator"/>
             <result property="serverAddress" column="server_address"/>
         </collection>
+        <collection property="appAndServerList" column="id" select="getAppServerListByAppId">
+            <result property="name" column="name"/>
+            <result property="ip" column="ip"/>
+            <result property="serverPort" column="server_port"/>
+        </collection>
     </resultMap>
 
     <select id="getBuildHistoryByAppId" resultType="com.berry.appmonitor.dao.entity.BuildHistory">
@@ -70,6 +75,14 @@
         id, app_id, result_state, start_time, end_time, operator, server_address
         from build_history
         where app_id = #{id}
+    </select>
+
+    <select id="getAppServerListByAppId" resultType="com.berry.appmonitor.module.vo.AppServerVo">
+        select
+        b.name, b.ip, a.server_port
+        from app_and_server a
+        left join server_info b on a.server_id = b.id
+        where a.app_id = #{id}
     </select>
 
     <select id="detailAppById" resultMap="detailAppMap">

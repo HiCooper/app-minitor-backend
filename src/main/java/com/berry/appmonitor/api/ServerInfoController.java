@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.berry.appmonitor.common.Result;
 import com.berry.appmonitor.common.ResultFactory;
 import com.berry.appmonitor.dao.entity.ServerInfo;
+import com.berry.appmonitor.module.mo.CreateServerMo;
 import com.berry.appmonitor.module.mo.UpdateServerInfoMo;
 import com.berry.appmonitor.service.IServerService;
 import io.swagger.annotations.Api;
@@ -35,11 +36,17 @@ public class ServerInfoController {
     @GetMapping("page")
     public Result pageListServer(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                  @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
-                                 @RequestParam(value = "keyword", required = false) String keyword
-    ) {
+                                 @RequestParam(value = "keyword", required = false) String keyword) {
         IPage<ServerInfo> page = serverService.pageListServer(pageNum, pageSize, keyword);
         return ResultFactory.wrapper(page);
 
+    }
+
+
+    @ApiOperation(value = "添加应用", httpMethod = "POST")
+    @PostMapping("create")
+    public Result createServer(@Validated @RequestBody CreateServerMo createServerMo) {
+        return ResultFactory.wrapper(serverService.createServer(createServerMo));
     }
 
     @ApiOperation(value = "详情查询", httpMethod = "GET")

@@ -68,4 +68,8 @@ public class AppInoDetailVo {
     // -----------  构建历史信息 ------------------
 
     List<BuildHistory> buildHistoryList = Collections.emptyList();
+
+    // ----------- 部署服务器信息 ------------------
+
+    List<AppServerVo> appAndServerList = Collections.emptyList();
 }

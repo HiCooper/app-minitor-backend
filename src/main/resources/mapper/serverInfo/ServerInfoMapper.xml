@@ -7,6 +7,7 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="ip" property="ip"/>
+        <result column="description" property="description"/>
         <result column="public_key_login" property="publicKeyLogin"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
@@ -14,7 +15,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, ip, public_key_login, create_time, update_time
+        id, name, ip, description ,public_key_login, create_time, update_time
     </sql>
 
 </mapper>

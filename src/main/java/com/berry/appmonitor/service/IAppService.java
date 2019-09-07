@@ -1,7 +1,6 @@
 package com.berry.appmonitor.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.berry.appmonitor.dao.entity.AppInfo;
 import com.berry.appmonitor.module.mo.CreateAppInfoMo;
 import com.berry.appmonitor.module.mo.UpdateAppInfoMo;
 import com.berry.appmonitor.module.vo.AppInfoListVo;

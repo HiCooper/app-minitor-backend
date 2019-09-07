@@ -15,50 +15,45 @@ import java.util.Date;
  * </p>
  *
  * @author HiCooper
- * @since 2019-09-06
+ * @since 2019-09-07
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class BuildHistory implements Serializable {
+public class AppAndServer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 主键id
      */
-    @TableId(value = "id", type = IdType.ID_WORKER_STR)
-    private String id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     /**
-     * 应用id
+     * 应用 id
      */
     private String appId;
 
     /**
-     * 结果状态
+     * 服务器id
      */
-    private String resultState;
+    private String serverId;
 
     /**
-     * 开始时间
+     * 服务器端口
      */
-    private Date startTime;
+    private String serverPort;
 
     /**
-     * 完成时间
+     * 创建时间
      */
-    private Date endTime;
+    private Date createTime;
 
     /**
-     * 操作员
+     * 更新时间
      */
-    private String operator;
-
-    /**
-     * 部署服务器地址IP+端口
-     */
-    private String serverAddress;
+    private Date updateTime;
 
 
 }

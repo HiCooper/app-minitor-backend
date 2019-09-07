@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.berry.appmonitor.common.Result;
 import com.berry.appmonitor.common.ResultFactory;
 import com.berry.appmonitor.dao.entity.ProjectInfo;
-import com.berry.appmonitor.module.mo.CreateAppInfoMo;
 import com.berry.appmonitor.module.mo.CreateProjectMo;
 import com.berry.appmonitor.module.mo.UpdateProjectInfoMo;
 import com.berry.appmonitor.service.IProjectService;
@@ -36,8 +35,8 @@ public class ProjectInfoController {
     @ApiOperation(value = "分页查询", httpMethod = "GET")
     @GetMapping("page")
     public Result pageList(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                  @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
-                                  @RequestParam(value = "keyword", required = false) String keyword) {
+                           @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+                           @RequestParam(value = "keyword", required = false) String keyword) {
         IPage<ProjectInfo> page = projectService.pageListProject(pageNum, pageSize, keyword);
         return ResultFactory.wrapper(page);
 
@@ -50,7 +49,7 @@ public class ProjectInfoController {
     }
 
     @GetMapping("list_base")
-    public Result listAllProject(){
+    public Result listAllProject() {
         return ResultFactory.wrapper(projectService.listAllProject());
     }
 

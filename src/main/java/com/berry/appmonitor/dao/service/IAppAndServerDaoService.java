@@ -1,7 +1,7 @@
 package com.berry.appmonitor.dao.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.berry.appmonitor.dao.entity.BuildHistory;
+import com.berry.appmonitor.dao.entity.AppAndServer;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.berry.appmonitor.dao.entity.BuildHistory;
  * </p>
  *
  * @author HiCooper
- * @since 2019-09-06
+ * @since 2019-09-07
  */
-public interface IBuildHistoryDaoService extends IService<BuildHistory> {
+public interface IAppAndServerDaoService extends IService<AppAndServer> {
 
 }
