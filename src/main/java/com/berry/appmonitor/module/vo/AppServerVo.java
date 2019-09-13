@@ -16,5 +16,10 @@ public class AppServerVo {
     private String name;
     private String ip;
     private String serverPort;
-    private String state;
+    /**
+     * 运行状态，这里暂给 succss，
+     * 所有状态：['default', 'processing', 'success', 'error'];
+     * 分别对应：['已关闭', '启动中', '运行中', '异常'];
+     */
+    private String state = "success";
 }

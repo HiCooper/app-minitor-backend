@@ -37,7 +37,7 @@
                 and
                 (a.name like concat("%",#{keyword},"%")
                 or b.name like concat("%",#{keyword},"%")
-                or c.name like concat("%",#{keyword},"%")
+                or c.username like concat("%",#{keyword},"%")
                 or a.git_url like concat("%",#{keyword},"%"))
             </if>
         </where>
